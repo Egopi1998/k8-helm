@@ -1,0 +1,13 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: expense
+  region: us-east-1
+managedNodeGroups: #nodeGroup → we need to manage # managedNodeGroup → will manage by EKS
+- name: expense
+  instanceType: m5.large
+  desiredCapacity: 2
+  spot : true
+# eksctl create cluster -f eksctl.yaml
+# eksctl delete cluster -f eksctl.yaml
+# eksctl get cluster -f eksctl.yaml
