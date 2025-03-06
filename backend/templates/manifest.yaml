@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: backend
-  namespace: {{ Values.namespace }}
+  namespace: {{ .Values.namespace }}
 data:
   DB_HOST: mysql #this is the service name of mysql
 ---
@@ -11,27 +11,27 @@ kind: Deployment
 metadata:
   name: backend
   labels:
-    project: {{ Values.namespace }}
+    project: {{ .Values.namespace }}
     tier: app
     component: backend
-  namespace: {{ Values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      project: {{ Values.namespace }}
+      project: {{ .Values.namespace }}
       tier: app
       component: backend
   template:
     metadata:
       labels:
-        project: {{ Values.namespace }}
+        project: {{ .Values.namespace }}
         tier: app
         component: backend
     spec:
       containers:
       - name: backend
-        image: gopi1998/backend:{{ Values.Deployment.imageVersion }} #will replace with our backend image
+        image: gopi1998/backend:{{ .Values.Deployment.imageVersion }} #will replace with our backend image
         envFrom:
         - configMapRef:
             name: backend
@@ -43,13 +43,13 @@ kind: Service
 metadata:
   name: backend
   labels:
-    project: {{ Values.namespace }}
+    project: {{ .Values.namespace }}
     tier: app
     component: backend
-  namespace: {{ Values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
-    project: {{ Values.namespace }}
+    project: {{ .Values.namespace }}
     tier: app
     component: backend
   ports:

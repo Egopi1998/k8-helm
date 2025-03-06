@@ -3,27 +3,27 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    project: {{ Values.namespace }}
+    project: {{ .Values.namespace }}
     tier: web
     component: frontend
-  namespace: {{ Values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      project: {{ Values.namespace }}
+      project: {{ .Values.namespace }}
       tier: web
       component: frontend
   template:
     metadata:
       labels:
-        project: {{ Values.namespace }}
+        project: {{ .Values.namespace }}
         tier: web
         component: frontend
     spec:
       containers:
       - name: frontend
-        image: gopi1998/frontend:{{ Values.Deployment.imageVersion }} #will replace with our frontend image
+        image: gopi1998/frontend:{{ .Values.Deployment.imageVersion }} #will replace with our frontend image
         volumeMounts:
         - name: nginx-config
           mountPath: /etc/nginx/nginx.conf
@@ -43,14 +43,14 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    project: {{ Values.namespace }}
+    project: {{ .Values.namespace }}
     tier: web
     component: frontend
-  namespace: {{ Values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   type: LoadBalancer #this will create a load balancer service and this will only work on cloud provider
   selector:
-    project: {{ Values.namespace }}
+    project: {{ .Values.namespace }}
     tier: web
     component: frontend
   ports:
