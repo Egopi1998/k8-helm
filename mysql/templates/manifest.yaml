@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: mysql 
-        image: gopi1998/mysql:{{ .Values.Deployment.imageVersion }} #will replace with our mysql image
+        image: gopi1998/mysql:{{ .Values.Deployment.imageVersion }}
 ---
 apiVersion: v1
 kind: Service
