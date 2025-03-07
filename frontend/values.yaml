@@ -1,5 +1,5 @@
 namespace: expense
-Deplayment:
+Deployment:
   imageVersion: v1.0
 configmap:
   port: 8080
