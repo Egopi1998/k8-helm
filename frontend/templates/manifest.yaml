@@ -24,6 +24,13 @@ spec:
       containers:
       - name: frontend
         image: gopi1998/frontend:{{ .Values.Deployment.imageVersion }} #will replace with our frontend image
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory: "128Mi"
         volumeMounts:
         - name: nginx-config
           mountPath: /etc/nginx/nginx.conf
