@@ -3,21 +3,21 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    project: {{ .Values.namespace }}
+    project: expense
     tier: web
     component: frontend
-  namespace: {{ .Values.namespace }}
+  namespace: expense
 spec:
   replicas: 2
   selector:
     matchLabels:
-      project: {{ .Values.namespace }}
+      project: expense
       tier: web
       component: frontend
   template:
     metadata:
       labels:
-        project: {{ .Values.namespace }}
+        project: expense
         tier: web
         component: frontend
     spec:
@@ -43,14 +43,14 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    project: {{ .Values.namespace }}
+    project: expense
     tier: web
     component: frontend
-  namespace: {{ .Values.namespace }}
+  namespace: expense
 spec:
   type: LoadBalancer #this will create a load balancer service and this will only work on cloud provider
   selector:
-    project: {{ .Values.namespace }}
+    project: expense
     tier: web
     component: frontend
   ports:

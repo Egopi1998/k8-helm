@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: backend
-  namespace: {{ .Values.namespace }}
+  namespace: expense
 data:
   DB_HOST: mysql #this is the service name of mysql
 ---
@@ -11,21 +11,21 @@ kind: Deployment
 metadata:
   name: backend
   labels:
-    project: {{ .Values.namespace }}
+    project: expense
     tier: app
     component: backend
-  namespace: {{ .Values.namespace }}
+  namespace: expense
 spec:
   replicas: 2
   selector:
     matchLabels:
-      project: {{ .Values.namespace }}
+      project: expense
       tier: app
       component: backend
   template:
     metadata:
       labels:
-        project: {{ .Values.namespace }}
+        project: expense
         tier: app
         component: backend
     spec:
@@ -43,13 +43,13 @@ kind: Service
 metadata:
   name: backend
   labels:
-    project: {{ .Values.namespace }}
+    project: expense
     tier: app
     component: backend
-  namespace: {{ .Values.namespace }}
+  namespace: expense
 spec:
   selector:
-    project: {{ .Values.namespace }}
+    project: expense
     tier: app
     component: backend
   ports:

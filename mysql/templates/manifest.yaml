@@ -3,23 +3,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  namespace: {{ .Values.namespace }} # this is the namespace where the deployment will be created
+  namespace: expense # this is the namespace where the deployment will be created
   labels:
     tier: db
-    project: {{ .Values.namespace }}
+    project: expense
     component: mysql
 spec:
   replicas: 2
   selector:
     matchLabels:
       tier: db
-      project: {{ .Values.namespace }}
+      project: expense
       component: mysql
   template:
     metadata:
       labels:
         tier: db
-        project: {{ .Values.namespace }}
+        project: expense
         component: mysql
     spec:
       containers:
@@ -30,15 +30,15 @@ apiVersion: v1
 kind: Service
 metadata: 
   name: mysql
-  namespace: {{ .Values.namespace }}
+  namespace: expense
   labels:
     tier: db
-    project: {{ .Values.namespace }}
+    project: expense
     component: mysql
 spec:
   selector:
     tier: db
-    project: {{ .Values.namespace }}
+    project: expense
     component: mysql
   ports:
   - protocol: TCP
