@@ -11,3 +11,8 @@ tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 
 sudo mv /tmp/eksctl /usr/local/bin
 ```
+
+* ref image:
+```
+![![alt text](image-1.png)](image.png)
+```
